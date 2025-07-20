@@ -12,7 +12,7 @@ jobs:
       - name: Check Website Status
         run: |
           START_TIME=$(date +%s)
-          RESPONSE=$(curl -Is -w "%{http_code}" -o /dev/null https://your-website.com)
+          RESPONSE=$(curl -Is -w "%{http_code}" -o /dev/null https://securenimbus.cloud)
           END_TIME=$(date +%s)
           RESPONSE_TIME=$((END_TIME - START_TIME))
           echo "Checked at $(date '+%Y-%m-%d %H:%M:%S %Z') IST equivalent: $(date -d '5 hours 30 minutes' '+%Y-%m-%d %H:%M:%S IST')"
