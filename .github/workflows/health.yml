@@ -12,7 +12,7 @@ jobs:
       - name: Check Website Status
         run: |
           START_TIME=$(date +%s)
-          RESPONSE=$(curl -Is -w "%{http_code}" -o /dev/null https://website-cy1q.onrender.com/)
+          RESPONSE=$(curl -Is -w "%{http_code}" -o /dev/null https://resume.securenimbus.cloud/)
           END_TIME=$(date +%s)
           RESPONSE_TIME=$((END_TIME - START_TIME))
           echo "Checked at $(date '+%Y-%m-%d %H:%M:%S %Z') IST equivalent: $(date -d '5 hours 30 minutes' '+%Y-%m-%d %H:%M:%S IST')"
@@ -21,11 +21,11 @@ jobs:
           if [ "$RESPONSE" != "200" ]; then
             echo "Website is down! HTTP Status: $RESPONSE"
             curl -X POST -H 'Content-type: application/json' \
-              --data "{\"content\": \"🚨 Website https://website-cy1q.onrender.com is down! HTTP Status: $RESPONSE at $(date '+%Y-%m-%d %H:%M:%S %Z')\"}" \
+              --data "{\"content\": \"🚨 Website https://resume.securenimbus.cloud is down! HTTP Status: $RESPONSE at $(date '+%Y-%m-%d %H:%M:%S %Z')\"}" \
               ${{ secrets.DISCORD_WEBHOOK_URL }}
             exit 1
           else
             echo "Website is up! HTTP Status: $RESPONSE"
           fi
         env:
-          WEBSITE_URL: https://website-cy1q.onrender.com # Replace with your Render website URL
+          WEBSITE_URL: https://resume.securenimbus.cloud # Replace with your Render website URL
